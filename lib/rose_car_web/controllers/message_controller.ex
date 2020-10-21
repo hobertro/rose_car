@@ -16,10 +16,14 @@ defmodule RoseCarWeb.MessageController do
   def create(conn, %{"message" => message_params}) do
     case Message.create(message_params) do
       {:ok, message} ->
-        redirect(conn, to: "/")
+        conn
+          |> put_flash(:success , "it worked!")
+          |> redirect(to: "/")
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        conn
+          |> put_flash(:error, "it failed!")
+          |> redirect(to: "/")
     end
   end
 
