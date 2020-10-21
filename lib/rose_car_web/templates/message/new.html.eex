@@ -1,0 +1,37 @@
+<%= form_for @changeset, Routes.message_path(@conn, :create), fn f -> %>
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationCustom01">First name:</label>
+      <%= text_input f, :first_name %>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="validationCustom02">Last name:</label>
+      <%= text_input f, :last_name %>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationCustom01">E-mail:</label>
+      <%= text_input f, :email %>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="validationCustom02">Phone Number:</label>
+      <%= text_input f, :phone %>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="issues">Issue Type:</label>
+      <%= select(f, :issue_type, ["Car Wash Bay": "car_wash_bay", "Vacuum": "vacuum", "Vending Machine": "vending_machine", "Change Machine": "change_machine", "Other": "other"], prompt: "Choose issue") %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="description of issue">Description of issue:</label>
+    <%= textarea(f, :issue_description, rows: "15") %>
+  </div>
+
+  <%= submit "Submit" %>
+<% end %>

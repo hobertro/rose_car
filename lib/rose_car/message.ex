@@ -2,6 +2,8 @@ defmodule RoseCar.Message do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias RoseCar.{Repo, Message}
+
   schema "messages" do
     field :email, :string
     field :first_name, :string
@@ -16,8 +18,17 @@ defmodule RoseCar.Message do
   @doc false
   def changeset(message, attrs) do
     message
-    |> cast(attrs, [:first_name, :last_name, :phone_number, :issue_type, :issue_description, :email])
-    |> validate_required([:first_name, :last_name, :phone_number, :issue_type, :issue_description, :email])
-    |> validate_length(:first_name, min: 2)
+     |> cast(attrs, [:first_name, :last_name, :phone_number, :issue_type, :issue_description, :email])
+  end
+
+  def create(attrs) do
+    %Message{}
+     |> Message.changeset(attrs)
+     |> Repo.insert()
+  end
+
+  def list_messages do
+    Message
+     |> Repo.all()
   end
 end

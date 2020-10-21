@@ -16,10 +16,13 @@ defmodule RoseCarWeb.Router do
   scope "/", RoseCarWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    # get "/", PageController, :index
     resources "/users", UserController
     resources "/sessions", SessionController, only: [:new, :create, :delete],
                                               singleton: true
+
+    post "/messages", MessageController, :create
+    get "/", MessageController, :new
   end
 
   # Other scopes may use custom stacks.
