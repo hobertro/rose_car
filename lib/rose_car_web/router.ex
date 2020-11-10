@@ -23,6 +23,7 @@ defmodule RoseCarWeb.Router do
 
     post "/messages", MessageController, :create
     get "/", MessageController, :new
+    get "/messages", MessageController, :index
   end
 
   # Other scopes may use custom stacks.
